@@ -15,8 +15,8 @@ export default function FadeMenu() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = (e) => {
-    handleSelect(e.target.innerText || selected);
+  const handleClose = (text = selected, path) => {
+    handleSelect(text, path);
     setAnchorEl(null);
   };
 
@@ -38,12 +38,13 @@ export default function FadeMenu() {
         }}
         anchorEl={anchorEl}
         open={open}
-        onClose={handleClose}
+        onClose={() => setAnchorEl(null)}
         TransitionComponent={Fade}
+        sx={{ zIndex: 60000000000 }}
       >
-        {MENU_LINKS.map(({ text, icon: Icon }) => (
+        {MENU_LINKS.map(({ text, icon: Icon, path }) => (
           <MenuItem
-            onClick={handleClose}
+            onClick={() => handleClose(text, path)}
             sx={{
               display: 'flex',
               gap: '10px',

@@ -1,7 +1,12 @@
 import React from 'react';
+import Layout from '../../layout/Layout';
 
 const TrashPage = () => {
-  return <div>TrashPage</div>;
+  return (
+    <Layout>
+      <div>TrashPage</div>
+    </Layout>
+  );
 };
 
 export default TrashPage;

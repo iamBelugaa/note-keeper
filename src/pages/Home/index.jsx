@@ -7,6 +7,7 @@ import NoteMenu from '../../components/shared/NoteMenu';
 import PreviewImage from '../../components/shared/PreviewImage';
 import { FILE_TYPES, MAX_ALLOWED_SIZE } from '../../constants';
 import Layout from '../../layout/Layout';
+import ZIndex from '../../layout/ZIndex';
 import toast from '../../utils/toast';
 
 const HomePage = () => {
@@ -49,41 +50,46 @@ const HomePage = () => {
 
   return (
     <Layout>
-      <Stack direction='row'>
-        return (
-        <Container
-          style={{
-            paddingBottom: showTextField ? '6px' : '0px',
-            paddingTop: image ? '20px' : '0px',
-            marginTop: '80px',
-            zIndex: '1000000',
-            display: 'flex',
-            flexDirection: 'column',
-            boxShadow:
-              '0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%)',
-            borderRadius: '10px',
-          }}
-          maxWidth='sm'
-        >
-          {!image && loading && <Loading />}
-          {image && (
-            <PreviewImage image={image} setImage={setImage} loading={loading} />
-          )}
-          {showTextField && <TextField multiline={false} placeholder='Title' />}
-          <TextField
-            placeholder='Take a note...'
-            handleShowTextField={() => setShowTextField(true)}
-            multiline={true}
-            fieldRef={textFieldRef}
-          />
-          {showTextField && (
-            <NoteMenu
-              handleClose={handleClose}
-              handleImageUpload={handleImageUpload}
+      <ZIndex>
+        <Stack direction='row'>
+          <Container
+            style={{
+              paddingBottom: showTextField ? '6px' : '0px',
+              paddingTop: image ? '20px' : '0px',
+              display: 'flex',
+              flexDirection: 'column',
+              boxShadow:
+                '0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%)',
+              borderRadius: '10px',
+            }}
+            maxWidth='sm'
+          >
+            {!image && loading && <Loading />}
+            {image && (
+              <PreviewImage
+                image={image}
+                setImage={setImage}
+                loading={loading}
+              />
+            )}
+            {showTextField && (
+              <TextField multiline={false} placeholder='Title' />
+            )}
+            <TextField
+              placeholder='Take a note...'
+              handleShowTextField={() => setShowTextField(true)}
+              multiline={true}
+              fieldRef={textFieldRef}
             />
-          )}
-        </Container>
-      </Stack>
+            {showTextField && (
+              <NoteMenu
+                handleClose={handleClose}
+                handleImageUpload={handleImageUpload}
+              />
+            )}
+          </Container>
+        </Stack>
+      </ZIndex>
     </Layout>
   );
 };

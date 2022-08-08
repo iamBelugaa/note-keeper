@@ -10,8 +10,8 @@ const AppDrawerListContainer = () => {
         boxShadow: 'none',
       }}
     >
-      {MENU_LINKS.map(({ text, icon: Icon }) => (
-        <DrawerItem Icon={Icon} text={text} key={text} />
+      {MENU_LINKS.map(({ text, icon: Icon, path }) => (
+        <DrawerItem Icon={Icon} text={text} key={text} path={path} />
       ))}
     </List>
   );

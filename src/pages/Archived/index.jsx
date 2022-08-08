@@ -1,7 +1,12 @@
 import React from 'react';
+import Layout from '../../layout/Layout';
 
 const ArchivedPage = () => {
-  return <div>ArchivedPage</div>;
+  return (
+    <Layout>
+      <div>Archived Page</div>
+    </Layout>
+  );
 };
 
 export default ArchivedPage;
