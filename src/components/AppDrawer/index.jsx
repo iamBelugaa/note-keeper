@@ -2,7 +2,6 @@ import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import IconButton from '@mui/material/IconButton';
 import MuiDrawer from '@mui/material/Drawer';
 import { styled } from '@mui/material/styles';
-import { useState } from 'react';
 
 // Components
 import AppDrawerListContainer from '../../containers/AppDrawerListContainer';
