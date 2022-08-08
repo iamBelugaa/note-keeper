@@ -9,3 +9,6 @@ export const MENU_LINKS = [
   { text: 'Archive', icon: ArchiveOutlinedIcon },
   { text: 'Trash', icon: DeleteOutlinedIcon },
 ];
+
+export const MAX_ALLOWED_SIZE = 300000; // 300KB
+export const FILE_TYPES = ['image/png', 'image/gif', 'image/jpeg']; // Allowed file types

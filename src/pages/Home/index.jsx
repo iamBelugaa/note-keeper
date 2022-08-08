@@ -1,14 +1,13 @@
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import { useEffect, useRef, useState } from 'react';
-import Layout from '../../layout/Layout';
-import PreviewImage from '../../components/shared/PreviewImage';
 import TextField from '../../components/shared/Input/TextField';
+import Loading from '../../components/shared/Loading';
 import NoteMenu from '../../components/shared/NoteMenu';
+import PreviewImage from '../../components/shared/PreviewImage';
+import { FILE_TYPES, MAX_ALLOWED_SIZE } from '../../constants';
+import Layout from '../../layout/Layout';
 import toast from '../../utils/toast';
-
-const MAX_ALLOWED_SIZE = 300000; // 300KB
-const fileTypes = ['image/png', 'image/gif', 'image/jpeg'];
 
 const HomePage = () => {
   const [showTextField, setShowTextField] = useState(false);
@@ -21,6 +20,7 @@ const HomePage = () => {
   }, []);
 
   const handleClose = () => {
+    textFieldRef.current.value = '';
     setShowTextField(false);
     setImage(null);
   };
@@ -32,15 +32,14 @@ const HomePage = () => {
     if (image.size > MAX_ALLOWED_SIZE)
       return toast({ message: 'File size bigger than 300KB.', type: 'error' });
 
-    if (!fileTypes.includes(image.type))
+    if (!FILE_TYPES.includes(image.type))
       return toast({
         message: 'Only JPG, PNG and GIF are allowed.',
         type: 'error',
       });
 
-    const reader = new FileReader();
     setLoading(true);
-
+    const reader = new FileReader();
     reader.readAsDataURL(image);
     reader.onloadend = () => {
       setLoading(false);
@@ -66,6 +65,7 @@ const HomePage = () => {
           }}
           maxWidth='sm'
         >
+          {!image && loading && <Loading />}
           {image && (
             <PreviewImage image={image} setImage={setImage} loading={loading} />
           )}
