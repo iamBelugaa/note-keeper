@@ -7,6 +7,7 @@ import { useState } from 'react';
 // Components
 import AppDrawerListContainer from '../../containers/AppDrawerListContainer';
 import Header from '../Header';
+import { useActiveDrawer } from '../../contexts/ActiveDrawer';
 
 const drawerWidth = 240;
 const openedMixin = (theme) => ({
@@ -66,19 +67,18 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function MiniDrawer() {
-  const [open, setOpen] = useState(true);
-  const handleDrawerClick = () => setOpen((state) => !state);
+  const { open, handleDrawerOpen } = useActiveDrawer();
 
   return (
     <>
-      <Header open={open} handleDrawerOpen={handleDrawerClick} />
+      <Header open={open} handleDrawerOpen={handleDrawerOpen} />
       <Drawer variant='permanent' open={open}>
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClick}>
+          <IconButton onClick={handleDrawerOpen}>
             <MenuOutlinedIcon />
           </IconButton>
         </DrawerHeader>
-        <AppDrawerListContainer open={open} />
+        <AppDrawerListContainer />
       </Drawer>
     </>
   );

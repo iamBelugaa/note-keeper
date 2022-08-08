@@ -1,8 +1,8 @@
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import TuneOutlinedIcon from '@mui/icons-material/TuneOutlined';
 import Input from '@mui/material/Input';
 import Stack from '@mui/material/Stack';
 import React from 'react';
+import Filter from '../Filter';
 
 const SearchInput = () => {
   return (
@@ -22,7 +22,7 @@ const SearchInput = () => {
         disableUnderline
         fullWidth={true}
       />
-      <TuneOutlinedIcon sx={{ cursor: 'pointer' }} />
+      <Filter />
     </Stack>
   );
 };

@@ -4,6 +4,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import MuiListItemText from '@mui/material/ListItemText';
 import React from 'react';
 import { styled } from '@mui/material/styles';
+import { useActiveDrawer } from '../../contexts/ActiveDrawer';
 
 const ListItem = styled(MuiListItem)({
   // Selected and (selected + hover) states
@@ -24,13 +25,13 @@ const ListItemText = styled(MuiListItemText)({
   },
 });
 
-const AppDrawerList = ({ open, Icon, text, selectedText, onSelect }) => {
-  const isSelected = text === selectedText;
-  console.log(isSelected);
+const AppDrawerList = ({ Icon, text }) => {
+  const { open, selected, handleSelect } = useActiveDrawer();
+  const isSelected = text === selected;
 
   return (
     <ListItem
-      onClick={() => onSelect(text)}
+      onClick={() => handleSelect(text)}
       key={text}
       disablePadding
       sx={{
