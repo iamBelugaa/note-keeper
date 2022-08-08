@@ -2,9 +2,8 @@ import MuiListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import MuiListItemText from '@mui/material/ListItemText';
-import React from 'react';
 import { styled } from '@mui/material/styles';
-import { useActiveDrawer } from '../../contexts/ActiveDrawer';
+import { useActiveDrawer } from '../../../contexts/DrawerContext/drawerContext';
 
 const ListItem = styled(MuiListItem)({
   // Selected and (selected + hover) states
@@ -25,7 +24,7 @@ const ListItemText = styled(MuiListItemText)({
   },
 });
 
-const AppDrawerList = ({ Icon, text }) => {
+const DrawerItem = ({ Icon, text }) => {
   const { open, selected, handleSelect } = useActiveDrawer();
   const isSelected = text === selected;
 
@@ -70,7 +69,7 @@ const AppDrawerList = ({ Icon, text }) => {
             opacity: open ? 1 : 0,
             color: 'MenuText',
             fontSize: '12px',
-            fontWeight: '600',
+            fontWeight: 600,
           }}
         />
       </ListItemButton>
@@ -78,4 +77,4 @@ const AppDrawerList = ({ Icon, text }) => {
   );
 };
 
-export default AppDrawerList;
+export default DrawerItem;

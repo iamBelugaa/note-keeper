@@ -1,19 +1,17 @@
-import { List } from '@mui/material';
+import List from '@mui/material/List';
+import DrawerItem from '../../components/Drawer/DrawerItem';
 import { MENU_LINKS } from '../../constants';
-
-// Components
-import AppDrawerList from '../../components/AppDrawerList';
 
 const AppDrawerListContainer = () => {
   return (
     <List
       sx={{
-        paddingTop: '20px',
+        paddingTop: '30px',
         boxShadow: 'none',
       }}
     >
       {MENU_LINKS.map(({ text, icon: Icon }) => (
-        <AppDrawerList Icon={Icon} text={text} key={text} />
+        <DrawerItem Icon={Icon} text={text} key={text} />
       ))}
     </List>
   );

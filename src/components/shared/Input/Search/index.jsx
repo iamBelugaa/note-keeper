@@ -1,8 +1,7 @@
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import Input from '@mui/material/Input';
 import Stack from '@mui/material/Stack';
-import React from 'react';
-import Filter from '../Filter';
+import Filter from '../../../Filter';
 
 const SearchInput = () => {
   return (
@@ -13,7 +12,7 @@ const SearchInput = () => {
       bgcolor='rgba(0, 0, 0, .045)'
       borderRadius={1.5}
       width='50%'
-      padding='8px 20px'
+      padding='6px 20px'
     >
       <SearchOutlinedIcon color='action' />
       <Input

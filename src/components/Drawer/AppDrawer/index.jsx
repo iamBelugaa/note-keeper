@@ -1,12 +1,12 @@
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
-import IconButton from '@mui/material/IconButton';
 import MuiDrawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
+import { useActiveDrawer } from '../../../contexts/DrawerContext/drawerContext';
 
 // Components
-import AppDrawerListContainer from '../../containers/AppDrawerListContainer';
-import Header from '../Header';
-import { useActiveDrawer } from '../../contexts/ActiveDrawer';
+import DrawerItemContainer from '../../../containers/DrawerItemContainer';
+import AppBar from '../../AppBar';
 
 const drawerWidth = 240;
 const openedMixin = (theme) => ({
@@ -65,19 +65,19 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function MiniDrawer() {
+export default function AppDrawer() {
   const { open, handleDrawerOpen } = useActiveDrawer();
 
   return (
     <>
-      <Header open={open} handleDrawerOpen={handleDrawerOpen} />
+      <AppBar open={open} handleDrawerOpen={handleDrawerOpen} />
       <Drawer variant='permanent' open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerOpen}>
             <MenuOutlinedIcon />
           </IconButton>
         </DrawerHeader>
-        <AppDrawerListContainer />
+        <DrawerItemContainer />
       </Drawer>
     </>
   );

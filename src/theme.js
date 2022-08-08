@@ -11,16 +11,7 @@ export default createTheme({
       'Apple Color Emoji',
     ].join(','),
     fontWeightBold: 700,
-    fontWeightMedium: 500,
-    fontWeightRegular: 400,
-  },
-  components: {
-    MuiListItem: {
-      styleOverrides: {
-        focusVisible: {
-          backgroundColor: 'transparent',
-        },
-      },
-    },
+    fontWeightMedium: 600,
+    fontWeightRegular: 500,
   },
 });

@@ -1,12 +1,11 @@
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import React from 'react';
-import logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
+import logo from '../../../assets/images/logo.png';
 
 const Logo = () => {
   return (
-    <Link to='/'>
+    <Link to='/' style={{ textDecoration: 'none' }}>
       <Stack
         direction='row'
         alignItems='center'

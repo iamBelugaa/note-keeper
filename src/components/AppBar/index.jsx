@@ -1,13 +1,16 @@
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
-import { AppBar as MuiAppBar, IconButton, Toolbar } from '@mui/material';
+import MuiAppBar from '@mui/material/AppBar';
+import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
-import Logo from '../Logo';
-import SearchInput from '../SearchInput';
+import Toolbar from '@mui/material/Toolbar';
+import SearchInput from '../shared/Input/Search';
+import Logo from '../shared/Logo';
 
-const AppBar = styled(MuiAppBar, {
+const AppBarComponent = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
   background: '#fff',
+  padding: '6px 0px',
   boxShadow: 'inset 0 -1px 0 0 #dadce0',
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(['width', 'margin'], {
@@ -22,9 +25,9 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const Header = ({ open, handleDrawerOpen }) => {
+const AppBar = ({ open, handleDrawerOpen }) => {
   return (
-    <AppBar position='fixed' open={open}>
+    <AppBarComponent position='fixed' open={open}>
       <Toolbar>
         <IconButton
           color='inherit'
@@ -38,8 +41,8 @@ const Header = ({ open, handleDrawerOpen }) => {
         <Logo />
         <SearchInput />
       </Toolbar>
-    </AppBar>
+    </AppBarComponent>
   );
 };
 
-export default Header;
+export default AppBar;

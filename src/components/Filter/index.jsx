@@ -2,13 +2,13 @@ import TuneOutlinedIcon from '@mui/icons-material/TuneOutlined';
 import Fade from '@mui/material/Fade';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import React from 'react';
+import { useState } from 'react';
 import { MENU_LINKS } from '../../constants';
-import { useActiveDrawer } from '../../contexts/ActiveDrawer';
+import { useActiveDrawer } from '../../contexts/DrawerContext/drawerContext';
 
 export default function FadeMenu() {
   const { handleSelect, selected } = useActiveDrawer();
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
@@ -28,7 +28,7 @@ export default function FadeMenu() {
         aria-haspopup='true'
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-        sx={{ cursor: 'pointer' }}
+        sx={{ cursor: 'pointer', marginTop: '6px' }}
         color='action'
       />
       <Menu
