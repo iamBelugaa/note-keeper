@@ -1,10 +1,11 @@
 import React from 'react';
 import Layout from '../../layout/Layout';
+import WithZIndex from '../../layout/WithZIndex';
 
 const ArchivedPage = () => {
   return (
     <Layout>
-      <div>Archived Page</div>
+      <WithZIndex>Archived Page</WithZIndex>
     </Layout>
   );
 };

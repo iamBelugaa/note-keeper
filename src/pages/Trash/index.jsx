@@ -1,10 +1,11 @@
 import React from 'react';
 import Layout from '../../layout/Layout';
+import WithZIndex from '../../layout/WithZIndex';
 
 const TrashPage = () => {
   return (
     <Layout>
-      <div>TrashPage</div>
+      <WithZIndex>TrashPage</WithZIndex>
     </Layout>
   );
 };

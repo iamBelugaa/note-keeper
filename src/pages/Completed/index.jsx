@@ -1,11 +1,11 @@
 import React from 'react';
 import Layout from '../../layout/Layout';
-import ZIndex from '../../layout/ZIndex';
+import WithZIndex from '../../layout/WithZIndex';
 
 const CompletedPage = () => {
   return (
     <Layout>
-      <ZIndex></ZIndex>
+      <WithZIndex></WithZIndex>
     </Layout>
   );
 };

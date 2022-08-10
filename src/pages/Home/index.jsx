@@ -7,7 +7,7 @@ import NoteMenu from '../../components/shared/NoteMenu';
 import PreviewImage from '../../components/shared/PreviewImage';
 import { FILE_TYPES, MAX_ALLOWED_SIZE } from '../../constants';
 import Layout from '../../layout/Layout';
-import ZIndex from '../../layout/ZIndex';
+import WithZIndex from '../../layout/WithZIndex';
 import toast from '../../utils/toast';
 
 const HomePage = () => {
@@ -50,7 +50,7 @@ const HomePage = () => {
 
   return (
     <Layout>
-      <ZIndex>
+      <WithZIndex>
         <Stack direction='row'>
           <Container
             style={{
@@ -89,7 +89,7 @@ const HomePage = () => {
             )}
           </Container>
         </Stack>
-      </ZIndex>
+      </WithZIndex>
     </Layout>
   );
 };
