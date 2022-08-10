@@ -36,7 +36,7 @@ export const markNoteArchiveAction = (id) => ({
 
 export const markNoteTrashAction = (id) => ({
   type: MARK_NOTE_TRASH,
-  payload: { id, value },
+  payload: { id },
 });
 
 export const deleteNoteTrashAction = (id) => ({

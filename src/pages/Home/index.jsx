@@ -1,10 +1,10 @@
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import { useEffect, useRef, useState } from 'react';
-import TextField from '../../components/shared/Input/TextField';
-import Loading from '../../components/shared/Loading';
-import NoteMenu from '../../components/shared/NoteMenu';
-import PreviewImage from '../../components/shared/PreviewImage';
+import TextField from '../../components/Shared/Input/TextField';
+import Loading from '../../components/Shared/Loading';
+import NoteMenu from '../../components/Shared/NoteMenu';
+import PreviewImage from '../../components/Shared/PreviewImage';
 import { FILE_TYPES, MAX_ALLOWED_SIZE } from '../../constants';
 import Layout from '../../layout/Layout';
 import WithZIndex from '../../layout/WithZIndex';

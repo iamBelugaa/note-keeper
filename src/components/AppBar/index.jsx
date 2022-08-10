@@ -3,8 +3,8 @@ import MuiAppBar from '@mui/material/AppBar';
 import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
-import SearchInput from '../shared/Input/Search';
-import Logo from '../shared/Logo';
+import SearchInput from '../Shared/Input/Search';
+import Logo from '../Shared/Logo';
 
 const AppBarComponent = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
