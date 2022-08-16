@@ -23,16 +23,16 @@ export default function FadeMenu() {
   return (
     <div>
       <TuneOutlinedIcon
-        id='demo-positioned-button'
+        id="demo-positioned-button"
         aria-controls={open ? 'demo-positioned-menu' : undefined}
-        aria-haspopup='true'
+        aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         sx={{ cursor: 'pointer', marginTop: '6px' }}
-        color='action'
+        color="action"
       />
       <Menu
-        id='fade-menu'
+        id="fade-menu"
         MenuListProps={{
           'aria-labelledby': 'fade-button',
         }}

@@ -8,11 +8,11 @@ import {
   markNoteCompleteAction,
   markNoteTrashAction,
 } from '../../store/actions/notes/notes-action-creator';
-import notesReducer from '../../store/reducers/notes-reducer';
+import notesReducer, { initialState } from '../../store/reducers/notes-reducer';
 import NotesContext from './notesContext';
 
 const NotesProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(notesReducer);
+  const [state = initialState, dispatch] = useReducer(notesReducer);
 
   const addNote = (data) => dispatch(addNoteAction(data));
   const deleteNote = (id) => dispatch(deleteNoteAction(id));

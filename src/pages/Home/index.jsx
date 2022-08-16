@@ -1,3 +1,4 @@
+import { ClickAwayListener } from '@mui/material';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import { useEffect, useRef, useState } from 'react';
@@ -6,6 +7,8 @@ import Loading from '../../components/Shared/Loading';
 import NoteMenu from '../../components/Shared/NoteMenu';
 import PreviewImage from '../../components/Shared/PreviewImage';
 import { FILE_TYPES, MAX_ALLOWED_SIZE } from '../../constants';
+import NotesCardContainer from '../../containers/NotesCardContainer';
+import { useNotes } from '../../contexts/NotesContext/notesContext';
 import Layout from '../../layout/Layout';
 import WithZIndex from '../../layout/WithZIndex';
 import toast from '../../utils/toast';
@@ -14,14 +17,21 @@ const HomePage = () => {
   const [showTextField, setShowTextField] = useState(false);
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
-  const textFieldRef = useRef();
+  const { addNote } = useNotes();
+  const noteRef = useRef(); // ? Note TextField Ref
+  const titleRef = useRef(); // ? Title TextFiled Ref
 
   useEffect(() => {
-    textFieldRef.current?.focus();
+    noteRef.current?.focus();
   }, []);
 
   const handleClose = () => {
-    textFieldRef.current.value = '';
+    const title = titleRef.current?.value;
+    const note = noteRef.current?.value;
+    if (title && note) addNote({ title, note, image });
+
+    noteRef.current.value = '';
+    titleRef.current && (titleRef.current.value = '');
     setShowTextField(false);
     setImage(null);
   };
@@ -30,14 +40,14 @@ const HomePage = () => {
     const image = files[0];
     if (!image) return;
 
-    if (image.size > MAX_ALLOWED_SIZE)
-      return toast({ message: 'File size bigger than 300KB.', type: 'error' });
-
     if (!FILE_TYPES.includes(image.type))
       return toast({
         message: 'Only JPG, PNG and GIF are allowed.',
         type: 'error',
       });
+
+    if (image.size > MAX_ALLOWED_SIZE)
+      return toast({ message: 'File size bigger than 300KB.', type: 'error' });
 
     setLoading(true);
     const reader = new FileReader();
@@ -51,43 +61,56 @@ const HomePage = () => {
   return (
     <Layout>
       <WithZIndex>
-        <Stack direction='row'>
-          <Container
-            style={{
-              paddingBottom: showTextField ? '6px' : '0px',
-              paddingTop: image ? '20px' : '0px',
-              display: 'flex',
-              flexDirection: 'column',
-              boxShadow:
-                '0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%)',
-              borderRadius: '10px',
-            }}
-            maxWidth='sm'
-          >
-            {!image && loading && <Loading />}
-            {image && (
-              <PreviewImage
-                image={image}
-                setImage={setImage}
-                loading={loading}
+        <Stack direction="column">
+          <ClickAwayListener onClickAway={handleClose}>
+            <Container
+              style={{
+                paddingBottom: showTextField ? '6px' : '0px',
+                paddingTop: image ? '20px' : '0px',
+                display: 'flex',
+                flexDirection: 'column',
+                boxShadow:
+                  '0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%)',
+                borderRadius: '10px',
+              }}
+              maxWidth="sm"
+            >
+              {!image && loading && <Loading />}
+              {image && (
+                <PreviewImage
+                  image={image}
+                  setImage={setImage}
+                  loading={loading}
+                />
+              )}
+              {showTextField && (
+                <TextField
+                  multiline={false}
+                  placeholder="Title"
+                  fieldRef={titleRef}
+                />
+              )}
+              <TextField
+                placeholder="Take a note..."
+                handleShowTextField={() => setShowTextField(true)}
+                multiline={true}
+                fieldRef={noteRef}
               />
-            )}
-            {showTextField && (
-              <TextField multiline={false} placeholder='Title' />
-            )}
-            <TextField
-              placeholder='Take a note...'
-              handleShowTextField={() => setShowTextField(true)}
-              multiline={true}
-              fieldRef={textFieldRef}
-            />
-            {showTextField && (
-              <NoteMenu
-                handleClose={handleClose}
-                handleImageUpload={handleImageUpload}
-              />
-            )}
-          </Container>
+              {showTextField && (
+                <NoteMenu
+                  handleClose={handleClose}
+                  handleImageUpload={handleImageUpload}
+                />
+              )}
+            </Container>
+          </ClickAwayListener>
+          <NotesCardContainer
+            filter={(note) =>
+              !note.isComplete && !note.trashed && !note.isArchived
+            }
+            isHomePage={true}
+            description="Notes you add appear here."
+          />
         </Stack>
       </WithZIndex>
     </Layout>

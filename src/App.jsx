@@ -11,14 +11,14 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <DrawerProvider>
-          <NotesProvider>
-            <Route exact path='/' component={HomePage} />
-            <Route path='/completed' component={CompletedPage} />
-            <Route path='/archive' component={ArchivedPage} />
-            <Route path='/trash' component={TrashPage} />
-          </NotesProvider>
-        </DrawerProvider>
+        <NotesProvider>
+          <DrawerProvider>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/completed" component={CompletedPage} />
+            <Route path="/archive" component={ArchivedPage} />
+            <Route path="/trash" component={TrashPage} />
+          </DrawerProvider>
+        </NotesProvider>
       </Switch>
     </Router>
   );

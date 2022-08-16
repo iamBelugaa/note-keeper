@@ -11,7 +11,15 @@ import {
 
 export const addNoteAction = (data) => ({
   type: ADD_NOTE,
-  payload: { note: { ...data, id: nanoid() } },
+  payload: {
+    note: {
+      ...data,
+      id: nanoid(),
+      isComplete: false,
+      isArchived: false,
+      trashed: false,
+    },
+  },
 });
 
 export const deleteNoteAction = (id) => ({

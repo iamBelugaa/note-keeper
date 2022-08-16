@@ -10,11 +10,11 @@ const TextField = ({
     <MuiTextField
       placeholder={placeholder}
       InputProps={{ disableUnderline: true }}
-      variant='standard'
+      variant="standard"
       multiline={multiline}
       inputRef={fieldRef}
       sx={{
-        width: '600px',
+        width: '100%',
         padding: '8px 0px',
       }}
       onClick={handleShowTextField}

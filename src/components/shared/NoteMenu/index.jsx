@@ -9,13 +9,13 @@ const NoteMenu = ({ handleClose, handleImageUpload }) => {
 
   return (
     <Stack
-      direction='row'
-      justifyContent='space-between'
-      alignItems='center'
-      marginTop='5px'
+      direction="row"
+      justifyContent="space-between"
+      alignItems="center"
+      marginTop="5px"
     >
       <Input
-        type='file'
+        type="file"
         sx={{ display: 'none' }}
         inputRef={inputRef}
         onChange={(e) => handleImageUpload(e.target.files)}
@@ -25,10 +25,10 @@ const NoteMenu = ({ handleClose, handleImageUpload }) => {
         sx={{ cursor: 'pointer' }}
       />
       <Button
-        variant='text'
-        type='button'
+        variant="text"
+        type="button"
         onClick={handleClose}
-        color='inherit'
+        color="inherit"
       >
         Close
       </Button>
