@@ -1,4 +1,5 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 import {
   addNoteAction,
   deleteNoteAction,
@@ -7,12 +8,22 @@ import {
   markNoteArchiveAction,
   markNoteCompleteAction,
   markNoteTrashAction,
+  searchNotesAction,
+  updateNotesAction,
 } from '../../store/actions/notes/notes-action-creator';
-import notesReducer, { initialState } from '../../store/reducers/notes-reducer';
+import notesReducer from '../../store/reducers/notes-reducer';
 import NotesContext from './notesContext';
 
 const NotesProvider = ({ children }) => {
-  const [state = initialState, dispatch] = useReducer(notesReducer);
+  const [storedNotes, setNotes] = useLocalStorage('notes');
+  const [{ notes, isSearching, searchedNotes }, dispatch] = useReducer(
+    notesReducer,
+    {
+      notes: storedNotes,
+      isSearching: false,
+      searchedNotes: [],
+    }
+  );
 
   const addNote = (data) => dispatch(addNoteAction(data));
   const deleteNote = (id) => dispatch(deleteNoteAction(id));
@@ -21,11 +32,23 @@ const NotesProvider = ({ children }) => {
   const markNoteArchive = (id) => dispatch(markNoteArchiveAction(id));
   const markNoteTrash = (id) => dispatch(markNoteTrashAction(id));
   const deleteNoteTrash = (id) => dispatch(deleteNoteTrashAction(id));
+  const updateNotes = (notes) => dispatch(updateNotesAction(notes));
+  const searchNotes = (search, isSearching) =>
+    dispatch(searchNotesAction(search, isSearching));
+
+  useEffect(() => {
+    updateNotes(storedNotes);
+  }, [storedNotes]);
+
+  useEffect(() => {
+    if (isSearching) return;
+    setNotes(notes);
+  }, [notes, setNotes, isSearching]);
 
   return (
     <NotesContext.Provider
       value={{
-        notes: state.notes,
+        notes,
         addNote,
         deleteNote,
         editNote,
@@ -33,6 +56,9 @@ const NotesProvider = ({ children }) => {
         markNoteComplete,
         markNoteTrash,
         deleteNoteTrash,
+        searchNotes,
+        searchedNotes,
+        isSearching,
       }}
     >
       {children}

@@ -5,9 +5,14 @@ import NotesCard from '../../components/NotesCard';
 import { useNotes } from '../../contexts/NotesContext/notesContext';
 import ZIndex from '../../layout/WithZIndex';
 
-const NotesCardContainer = ({ filter, description, isHomePage = false }) => {
-  const { notes } = useNotes();
-  const filteredNotes = notes.filter(filter);
+const NotesCardContainer = ({
+  filter,
+  description,
+  isHomePage = false,
+  deleteFromTrash,
+}) => {
+  const { notes, isSearching, searchedNotes } = useNotes();
+  const filteredNotes = isSearching ? searchedNotes : notes.filter(filter);
 
   if (filteredNotes.length === 0)
     return <EmptyNotes description={description} isHomePage={isHomePage} />;
@@ -17,7 +22,7 @@ const NotesCardContainer = ({ filter, description, isHomePage = false }) => {
       <Grid
         container
         sx={{
-          maxWidth: '1150px',
+          maxWidth: '1100px',
           margin: '0 auto',
           marginLeft: '280px',
           gap: '20px',
@@ -26,7 +31,11 @@ const NotesCardContainer = ({ filter, description, isHomePage = false }) => {
         }}
       >
         {filteredNotes.map((note) => (
-          <NotesCard note={note} key={note.id} />
+          <NotesCard
+            note={note}
+            key={note.id}
+            deleteFromTrash={deleteFromTrash}
+          />
         ))}
       </Grid>
     </ZIndex>

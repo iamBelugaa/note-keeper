@@ -11,4 +11,4 @@ export const MENU_LINKS = [
 ];
 
 export const MAX_ALLOWED_SIZE = 300000; // 300KB
-export const FILE_TYPES = ['image/png', 'image/gif', 'image/jpeg']; // Allowed file types
+export const FILE_TYPES = ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml']; // Allowed file types

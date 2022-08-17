@@ -1,5 +1,5 @@
 const ZIndex = ({ children }) => {
-  return <div style={{ zIndex: 100000000, marginTop: '80px' }}>{children}</div>;
+  return <div style={{ zIndex: 1000, marginTop: '80px' }}>{children}</div>;
 };
 
 export default ZIndex;

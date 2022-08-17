@@ -7,6 +7,8 @@ import {
   MARK_NOTE_COMPLETE,
   MARK_NOTE_TRASH,
   DELETE_FROM_TRASH,
+  UPDATE_NOTES,
+  SEARCH_NOTES,
 } from './note-actions';
 
 export const addNoteAction = (data) => ({
@@ -50,4 +52,14 @@ export const markNoteTrashAction = (id) => ({
 export const deleteNoteTrashAction = (id) => ({
   type: DELETE_FROM_TRASH,
   payload: { id },
+});
+
+export const updateNotesAction = (notes) => ({
+  type: UPDATE_NOTES,
+  payload: { notes },
+});
+
+export const searchNotesAction = (search, isSearching) => ({
+  type: SEARCH_NOTES,
+  payload: { search, isSearching },
 });

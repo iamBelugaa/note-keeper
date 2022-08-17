@@ -6,13 +6,11 @@ import {
   MARK_NOTE_ARCHIVE,
   MARK_NOTE_COMPLETE,
   MARK_NOTE_TRASH,
+  SEARCH_NOTES,
+  UPDATE_NOTES,
 } from '../actions/notes/note-actions';
 
-export const initialState = {
-  notes: [],
-};
-
-const notesReducer = (state = initialState, { type, payload }) => {
+const notesReducer = (state, { type, payload }) => {
   if (type === ADD_NOTE)
     return { ...state, notes: [payload.note, ...state.notes] };
 
@@ -53,6 +51,22 @@ const notesReducer = (state = initialState, { type, payload }) => {
     return { ...state, notes };
   }
 
+  if (type === UPDATE_NOTES) return { notes: payload.notes };
+
+  if (type === SEARCH_NOTES) {
+    const notes = state.notes;
+    const filteredNotes = notes.filter((note) => {
+      const match =
+        note.title.toLowerCase().indexOf(payload.search.toLowerCase()) !== -1;
+      return match && note;
+    });
+
+    return {
+      ...state,
+      searchedNotes: filteredNotes,
+      isSearching: payload.isSearching,
+    };
+  }
   return state;
 };
 

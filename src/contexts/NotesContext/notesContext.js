@@ -2,6 +2,8 @@ import { createContext, useContext } from 'react';
 
 const NotesContext = createContext({
   notes: [],
+  searchedNotes: [],
+  isSearching: false,
   addNote: () => {},
   deleteNote: () => {},
   editNote: () => {},
@@ -9,6 +11,7 @@ const NotesContext = createContext({
   markNoteArchive: () => {},
   markNoteTrash: () => {},
   deleteNoteTrash: () => {},
+  searchNotes: () => {},
 });
 
 export const useNotes = () => useContext(NotesContext);
