@@ -5,6 +5,7 @@ const TextField = ({
   multiline,
   handleShowTextField,
   fieldRef,
+  value,
 }) => {
   return (
     <MuiTextField
@@ -13,6 +14,7 @@ const TextField = ({
       variant="standard"
       multiline={multiline}
       inputRef={fieldRef}
+      value={value}
       sx={{
         width: '100%',
         padding: '8px 0px',

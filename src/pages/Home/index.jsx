@@ -11,6 +11,7 @@ import NotesCardContainer from '../../containers/NotesCardContainer';
 import { useNotes } from '../../contexts/NotesContext/notesContext';
 import Layout from '../../layout/Layout';
 import WithZIndex from '../../layout/WithZIndex';
+import toastify from '../../utils/toast';
 import toast from '../../utils/toast';
 
 const HomePage = () => {
@@ -28,7 +29,10 @@ const HomePage = () => {
   const handleClose = () => {
     const title = titleRef.current?.value;
     const note = noteRef.current?.value;
-    if (title && note) addNote({ title, note, image });
+    if (title && note) {
+      addNote({ title, note, image });
+      toastify({ message: 'Note added.' });
+    }
 
     noteRef.current.value = '';
     titleRef.current && (titleRef.current.value = '');
@@ -104,6 +108,7 @@ const HomePage = () => {
               )}
             </Container>
           </ClickAwayListener>
+
           <NotesCardContainer
             filter={(note) =>
               !note.isComplete && !note.trashed && !note.isArchived

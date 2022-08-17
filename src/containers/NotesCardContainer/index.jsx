@@ -32,8 +32,8 @@ const NotesCardContainer = ({
       >
         {filteredNotes.map((note) => (
           <NotesCard
-            note={note}
             key={note.id}
+            note={note}
             deleteFromTrash={deleteFromTrash}
           />
         ))}

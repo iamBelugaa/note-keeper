@@ -21,8 +21,9 @@ const notesReducer = (state, { type, payload }) => {
 
   if (type === EDIT_NOTE) {
     const note = state.notes.find((n) => n.id === payload.id);
+    const filteredNotes = state.notes.filter((n) => n.id !== payload.id);
     const newNote = { ...note, ...payload.data };
-    return { ...state, notes: [...state.notes, newNote] };
+    return { ...state, notes: [...filteredNotes, newNote] };
   }
 
   if (type === MARK_NOTE_COMPLETE) {
