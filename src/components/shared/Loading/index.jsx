@@ -18,10 +18,10 @@ const Loading = ({ text = 'LOADING', time = 300 }) => {
 
   return (
     <Typography
-      variant='h4'
-      component='span'
-      textAlign='center'
-      marginTop='30px'
+      variant="h4"
+      component="span"
+      textAlign="center"
+      marginTop="30px"
     >
       {content}
     </Typography>

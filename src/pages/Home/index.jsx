@@ -3,7 +3,6 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import { useEffect, useRef, useState } from 'react';
 import TextField from '../../components/Shared/Input/TextField';
-import Loading from '../../components/Shared/Loading';
 import NoteMenu from '../../components/Shared/NoteMenu';
 import PreviewImage from '../../components/Shared/PreviewImage';
 import { FILE_TYPES, MAX_ALLOWED_SIZE } from '../../constants';
@@ -75,7 +74,6 @@ const HomePage = () => {
               }}
               maxWidth="sm"
             >
-              {!image && loading && <Loading />}
               {image && (
                 <PreviewImage
                   image={image}
