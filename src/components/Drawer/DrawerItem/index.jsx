@@ -26,11 +26,11 @@ const ListItemText = styled(MuiListItemText)({
 
 const DrawerItem = ({ Icon, text, path }) => {
   const { open, selected, handleSelect } = useActiveDrawer();
-  const isSelected = text === selected;
+  const isSelected = path === selected;
 
   return (
     <ListItem
-      onClick={() => handleSelect(text, path)}
+      onClick={() => handleSelect(path)}
       key={text}
       disablePadding
       sx={{

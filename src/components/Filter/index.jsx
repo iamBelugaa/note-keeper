@@ -7,7 +7,7 @@ import { MENU_LINKS } from '../../constants';
 import { useActiveDrawer } from '../../contexts/DrawerContext/drawerContext';
 
 export default function FadeMenu() {
-  const { handleSelect, selected } = useActiveDrawer();
+  const { handleSelect } = useActiveDrawer();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -15,8 +15,8 @@ export default function FadeMenu() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = (text = selected, path) => {
-    handleSelect(text, path);
+  const handleClose = (path) => {
+    handleSelect(path);
     setAnchorEl(null);
   };
 
