@@ -12,7 +12,6 @@ import { useNotes } from '../../contexts/NotesContext/notesContext';
 import Layout from '../../layout/Layout';
 import WithZIndex from '../../layout/WithZIndex';
 import toastify from '../../utils/toast';
-import toast from '../../utils/toast';
 
 const HomePage = () => {
   const [showTextField, setShowTextField] = useState(false);
@@ -45,13 +44,16 @@ const HomePage = () => {
     if (!image) return;
 
     if (!FILE_TYPES.includes(image.type))
-      return toast({
+      return toastify({
         message: 'Only JPG, PNG and GIF are allowed.',
         type: 'error',
       });
 
     if (image.size > MAX_ALLOWED_SIZE)
-      return toast({ message: 'File size bigger than 300KB.', type: 'error' });
+      return toastify({
+        message: 'File size bigger than 300KB.',
+        type: 'error',
+      });
 
     setLoading(true);
     const reader = new FileReader();

@@ -44,7 +44,7 @@ export default function FadeMenu() {
       >
         {MENU_LINKS.map(({ text, icon: Icon, path }) => (
           <MenuItem
-            onClick={() => handleClose(text, path)}
+            onClick={() => handleClose(path)}
             sx={{
               display: 'flex',
               gap: '10px',
